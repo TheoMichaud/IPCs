@@ -8,9 +8,8 @@
  * File:   main.c
  * Author: tmichaud
  *
- * Created on 18 septembre 2018, 08:13
+ * Created on 18 septembre 2018, 08:47
  */
-
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,6 +20,13 @@
 #include <errno.h>
 #include <string.h>
 
+typedef struct{
+	unsigned char jour;
+	unsigned char mois;
+	unsigned short int annee;
+	char jourDeLaSemaine[10];	// le jour en toute lettre
+}datePerso;
+
 /*
  * 
  */
@@ -28,9 +34,11 @@ int main(int argc, char** argv) {
     
     int socketClient;
     struct sockaddr_in infoServeur;
-    int entierAEnvoyer=140;
-    int entierRecu;
-    int tailleStructure;
+    datePerso chaineAEnvoyer;    
+    chaineAEnvoyer.jour = 14;
+    chaineAEnvoyer.mois = 9;
+    chaineAEnvoyer.annee = 1999;
+    strcpy(chaineAEnvoyer.jourDeLaSemaine,"vendredi");   
     int retour;
     
     socketClient=socket(PF_INET , SOCK_STREAM, IPPROTO_TCP);
@@ -41,9 +49,8 @@ int main(int argc, char** argv) {
     }
     
     infoServeur.sin_family=AF_INET;
-    infoServeur.sin_port=htons(5555);
-    infoServeur.sin_addr.s_addr=inet_addr("172.18.58.79");
-    //infoServeur.sin_addr.s_addr=inet_addr("127.0.0.1");//tester avec soi-même
+    infoServeur.sin_port=htons(7777);
+    infoServeur.sin_addr.s_addr=inet_addr("172.18.58.83");
     
     retour=connect(socketClient, (struct sockaddr *)&infoServeur, sizeof(infoServeur));
     if(retour==-1)
@@ -52,23 +59,14 @@ int main(int argc, char** argv) {
         exit(errno);
     }
     
-    retour=sendto(socketClient, &entierAEnvoyer, sizeof(entierAEnvoyer), 0, (struct sockaddr *)&infoServeur, sizeof(infoServeur));       
+    retour=sendto(socketClient, &chaineAEnvoyer, sizeof(chaineAEnvoyer), 0, (struct sockaddr *)&infoServeur, sizeof(infoServeur));       
     
     if(retour==-1)
     {
         printf("pb sendto : %s \n",strerror(errno));
         exit(errno);
     }
-
-    tailleStructure=sizeof(infoServeur);
-    retour=recvfrom(socketClient, &entierRecu, sizeof(entierRecu), 0, (struct sockaddr *)&infoServeur, &tailleStructure);
     
-    if(retour==-1)
-    {
-        printf("pb recvfrom: %s \n",strerror(errno));
-    }  
-    //afficher l'entier du serveur
-    printf("message reçu : %d \n", entierRecu);
 
     return (EXIT_SUCCESS);
 }

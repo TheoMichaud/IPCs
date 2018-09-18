@@ -8,10 +8,8 @@
  * File:   main.c
  * Author: tmichaud
  *
- * Created on 18 septembre 2018, 08:13
+ * Created on 18 septembre 2018, 08:43
  */
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -28,8 +26,8 @@ int main(int argc, char** argv) {
     
     int socketClient;
     struct sockaddr_in infoServeur;
-    int entierAEnvoyer=140;
-    int entierRecu;
+    float reelAEnvoyer=54.6;
+    float reelRecu;
     int tailleStructure;
     int retour;
     
@@ -41,9 +39,8 @@ int main(int argc, char** argv) {
     }
     
     infoServeur.sin_family=AF_INET;
-    infoServeur.sin_port=htons(5555);
-    infoServeur.sin_addr.s_addr=inet_addr("172.18.58.79");
-    //infoServeur.sin_addr.s_addr=inet_addr("127.0.0.1");//tester avec soi-même
+    infoServeur.sin_port=htons(6666);
+    infoServeur.sin_addr.s_addr=inet_addr("172.18.58.83");
     
     retour=connect(socketClient, (struct sockaddr *)&infoServeur, sizeof(infoServeur));
     if(retour==-1)
@@ -52,7 +49,7 @@ int main(int argc, char** argv) {
         exit(errno);
     }
     
-    retour=sendto(socketClient, &entierAEnvoyer, sizeof(entierAEnvoyer), 0, (struct sockaddr *)&infoServeur, sizeof(infoServeur));       
+    retour=sendto(socketClient, &reelAEnvoyer, sizeof(reelAEnvoyer), 0, (struct sockaddr *)&infoServeur, sizeof(infoServeur));       
     
     if(retour==-1)
     {
@@ -61,14 +58,14 @@ int main(int argc, char** argv) {
     }
 
     tailleStructure=sizeof(infoServeur);
-    retour=recvfrom(socketClient, &entierRecu, sizeof(entierRecu), 0, (struct sockaddr *)&infoServeur, &tailleStructure);
+    retour=recvfrom(socketClient, &reelRecu, sizeof(reelRecu), 0, (struct sockaddr *)&infoServeur, &tailleStructure);
     
     if(retour==-1)
     {
         printf("pb recvfrom: %s \n",strerror(errno));
     }  
     //afficher l'entier du serveur
-    printf("message reçu : %d \n", entierRecu);
+    printf("message reçu : %f \n", reelRecu);
 
     return (EXIT_SUCCESS);
 }
