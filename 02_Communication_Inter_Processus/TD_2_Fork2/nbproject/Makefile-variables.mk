@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=td_2
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/td_2
+CND_ARTIFACT_NAME_Debug=td_2_fork2
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/td_2_fork2
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=td2.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/td2.tar
+CND_PACKAGE_NAME_Debug=td2fork2.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/td2fork2.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=td_2
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/td_2
+CND_ARTIFACT_NAME_Release=td_2_fork2
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/td_2_fork2
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=td2.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/td2.tar
+CND_PACKAGE_NAME_Release=td2fork2.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/td2fork2.tar
 #
 # include compiler specific variables
 #
