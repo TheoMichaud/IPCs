@@ -9,6 +9,10 @@
  * Author: tmichaud
  *
  * Created on 26 septembre 2018, 09:11
+ * 
+ * 
+ * QUESTION 4
+ * 
  */
 
 #include <stdio.h>
