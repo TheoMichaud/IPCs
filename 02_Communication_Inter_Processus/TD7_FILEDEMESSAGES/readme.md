@@ -69,13 +69,13 @@ struct message{
 
 L'envoi d'un message s'effectue par l'intermédiaire de la primitive **msgsnd()**. Par défaut msgsnd() est bloquant c'est à dire que le processus est suspendu lors d'un dépôt d'un message si la file est pleine. En positionnant le paramètre IPC_NOWAIT la primitive de dépôt devient non bloquante.
 ```c
-msgsnd(idFile,(void*)&maFile,sizeof(maFile.texte),IPC_NOWAIT); 
+msgsnd(idFile,(void*)&maFile,sizeof(maFile.donnee),IPC_NOWAIT); 
 ```
 ### Réception d'un message
 
 Un processus désirant prélever un message depuis une file de messages utilise la primitive **msgrcv()**
 ```c
-ret=msgrcv(idFile,(void*)&maFile,9,2,IPC_NOWAIT);
+ret=msgrcv(idFile,(void*)&maFile,,sizeof(maFile.donnee),9,2,IPC_NOWAIT);
 ```
 
  - idFile :  correspond à l'identifiant interne de la file
